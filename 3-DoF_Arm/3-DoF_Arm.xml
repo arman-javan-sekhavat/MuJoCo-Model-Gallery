@@ -1,0 +1,40 @@
+<mujoco model="3-Link Manipulator">
+
+	<option integrator="implicit"/>
+
+	<asset>
+		<texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+		<material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+	</asset>
+	
+	<worldbody>
+	    <geom type="plane" size="0 0 0.1" material="grid"/>
+		<light directional="false" pos="0 0 20" dir="0 0 -1" diffuse="1 1 1" active="true"/>
+
+		<body name="body_1" pos="0.0 0.0 1.0" axisangle="1 0 0 180">
+			<joint name="joint_1" type="hinge" pos="0.0 0.0 0.0" axis="1 0 0" damping="0.1"/>
+			<geom type="capsule" size="0.025" fromto="0.0 0.0 0.0 0.0 0.0 0.3" rgba="1 0.1 0.1 1" mass="1.2"/>
+
+			<body name="body_2" pos="0.05 0.0 0.3">
+				<joint name="joint_2" type="hinge" pos="0.0 0.0 0.0" axis="1 0 0" damping="0.1"/>
+				<geom type="capsule" size="0.025" fromto="0.0 0.0 0.0 0.0 0.0 0.2" rgba="0.1 1 0.1 1" mass="0.8"/>
+
+				<body name="body_3" pos="0.05 0.0 0.2">
+				<joint name="joint_3" type="hinge" pos="0.0 0.0 0.0" axis="1 0 0" damping="0.1"/>
+				<geom type="capsule" size="0.025" fromto="0.0 0.0 0.0 0.0 0.0 0.2" rgba="0.1 0.1 1 1" mass="0.8"/>
+			</body>
+			</body>
+
+
+		</body>
+
+    </worldbody>
+
+	<actuator>
+		<motor name="motor_1" joint="joint_1"/>
+		<motor name="motor_2" joint="joint_2"/>
+		<motor name="motor_3" joint="joint_3"/>
+	</actuator>
+
+
+</mujoco>

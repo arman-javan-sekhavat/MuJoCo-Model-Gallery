@@ -1,0 +1,28 @@
+﻿<mujoco model="Wind Turbine">
+
+	<asset>
+		<texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+		<material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+		<mesh name="base" file="base.stl" scale="1.0 1.0 1.0"/>
+		<mesh name="blades" file="blades.stl" scale="1.0 1.0 1.0"/>
+	</asset>
+
+	<option wind="-10000 0 0" density="1000"/>
+	
+	<worldbody>
+		<geom name="ground" type="plane" size="0 0 0.1" material="grid"/>
+		<geom type="mesh" mesh="base" rgba="0.5 0.5 0.5 1"/>
+		<light directional="false" pos="0 0 30" dir="0 0 -1" diffuse="1 1 1" active="true"/>
+
+		<body pos="0.26 0.00 1.25" xyaxes="0 1 0 1 0 0">
+			<joint name="revolute" type="hinge" pos="0 0 0" axis="0 1 0"/>
+			<geom type="mesh" mesh="blades" density="100" friction="0" rgba="1 1 1 1"/>
+		</body>
+		
+	</worldbody>
+
+	<actuator>
+		<motor joint="revolute" ctrlrange="-10 +10"/>
+	</actuator>
+	
+</mujoco>

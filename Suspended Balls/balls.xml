@@ -1,0 +1,38 @@
+<mujoco model="composite">
+	
+	<worldbody>
+		<geom type="plane" size="0 0 0.1" rgba="1 1 1 1"/>
+		<light pos="0 0 20" dir="0 0 -1"/>
+
+		<body pos="0 0 6">
+			<geom type="box" pos="0 0 0" size="1 1 0.1" rgba="0.5 0.5 0.5 1.0"/>
+			<site name="end1" type="sphere" pos="0 0 0" size="0.1"/>
+		</body>
+
+		<body pos="4 0 3">
+			<freejoint/>
+			<geom type="sphere" pos="0 0 0" size="0.25" rgba="1 0 0 1"/>
+			<site name="end2" type="sphere" pos="0 0 0" size="0.1"/>
+		</body>
+		
+		<body pos="0 5 6">
+			<freejoint/>
+			<geom type="sphere" pos="0 0 0" size="0.25" rgba="0 0 1 1"/>
+			<site name="end3" type="sphere" pos="0 0 0" size="0.1"/>
+		</body>
+	
+	</worldbody>
+
+	<tendon>
+		<spatial limited="true" range="4.9 5.0" width="0.01">
+			<site site="end1"/>
+			<site site="end2"/>
+		</spatial>
+	
+		<spatial limited="true" range="4.9 5.0" width="0.01">
+			<site site="end1"/>
+			<site site="end3"/>
+		</spatial>
+	</tendon>
+
+</mujoco>

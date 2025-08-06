@@ -1,0 +1,38 @@
+﻿<mujoco model="Mass_Spring_Damper">
+
+	<asset>
+		<texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+		<material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+	</asset>
+	
+	<worldbody>
+
+		<geom type="box" size="0.10 0.25 0.25" pos="0.00 0.00 0.25" rgba="0.1 0.1 0.1 1"/>
+		<site name="site_1" type="sphere" size="0.01" pos="0.10 0.00 0.25"/>
+
+		<geom type="plane" size="0 0 0.1" material="grid"/>
+		<light pos="0 0 20" dir="0 0 -1"/>
+		
+		<body name="block" pos="5.00 0.00 0.25">
+			<joint name="prismatic" type="slide" axis="1 0 0" damping="15.0" stiffness="50.0"/>
+			<geom type="box" size="0.25 0.25 0.25" rgba="1 1 1 1"/>
+			<site name="site_2" type="sphere" size="0.01" pos="-0.25 0.00 0.00"/>
+			
+		</body>
+		
+	</worldbody>
+
+
+	<actuator>
+		<motor joint="prismatic" ctrlrange="-100.0 +100.0"/>
+	</actuator>
+
+	<tendon>
+		<spatial
+			limited="true" range="0.0 5.0" width="0.025" stiffness="100.0" springlength="1.0">
+			<site site="site_1"/>
+			<site site="site_2"/>
+		</spatial>
+	</tendon>
+	
+</mujoco>
