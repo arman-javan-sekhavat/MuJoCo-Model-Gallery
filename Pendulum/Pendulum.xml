@@ -1,0 +1,27 @@
+<mujoco model="pendulum">
+
+    <option integrator="implicit"/>
+
+    <asset>
+        <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+		<material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+    </asset>
+
+    <worldbody>
+        <geom type="plane" size="0 0 0.1" material="grid"/>
+        <light directional="false" pos="0 0 20" dir="0 0 -1" diffuse="1 1 1" active="true"/>
+
+        <geom type="sphere" size="0.03" pos="0.00 0.00 1.00" rgba="0.25 0.25 0.25 1.00"/>
+
+        <body>
+            <geom type="capsule" size="0.025" fromto="0.00 0.00 1.00 0.00 0.00 0.50" rgba="1.0 1.0 1.0 1.0" mass="1.0"/>
+            <joint name="pin" type="hinge" pos="0.00 0.00 1.00" axis="1 0 0" damping="0.25" frictionloss="0.50" stiffness="2.0"/>
+        </body>
+    </worldbody>
+
+
+    <actuator>
+        <motor name="u" joint="pin"/>
+    </actuator>
+
+</mujoco>
