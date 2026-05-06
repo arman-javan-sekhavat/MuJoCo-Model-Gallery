@@ -1,3 +1,6 @@
+# MuJoCo Model Gallery
+This repository contains MuJoCo models for simulating several environments.
+
 ## Wind Turbine
 <img width="719" height="641" alt="image" src="https://github.com/user-attachments/assets/e85f9453-9423-4ada-b691-58b59aeab427" />
 
