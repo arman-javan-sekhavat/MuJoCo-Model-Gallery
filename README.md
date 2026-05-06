@@ -1,6 +1,9 @@
 # MuJoCo Model Gallery
 This repository contains MuJoCo models for simulating several environments.
 
+## How to Use
+Simply place each enviornment's files in the same directory. The environment then can be simulated by either dragging and dropping the corresponding XML file into the MuJoCo Simulate app, or by utilizing MuJoCo's C or Python API. Below, you can see previews of each environment.
+
 ## Wind Turbine
 <img width="719" height="641" alt="image" src="https://github.com/user-attachments/assets/e85f9453-9423-4ada-b691-58b59aeab427" />
 
