@@ -1,4 +1,4 @@
-<mujoco model="Inverted Pendulum">
+<mujoco model="Cart-Pole">
 	<asset>
 		<texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
 		<material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
@@ -8,14 +8,14 @@
 		<geom type="plane" size="0 0 0.1" material="grid"/>
 		<light directional="false" pos="0 0 20" dir="0 0 -1" diffuse="1 1 1" active="true"/>
 
-		<body pos="0 0 0.01">
-			<geom type="box" size="0.2 0.1 0.01" rgba="0.8 0.8 0.8 1.0"/>
-            <geom type="sphere" size="0.015" pos="0.00 0.00 0.01" rgba="0.25 0.25 0.25 1.00"/>
-			<joint name="slide" type="slide" pos="0 0 -0.25" axis="1 0 0"/>
+		<body name="Cart" pos="0 0 0.01">
+			<geom type="box" size="0.2 0.1 0.01" rgba="0.8 0.8 0.8 1.0" mass="0.95"/>
+            <geom type="sphere" size="0.015" pos="0.00 0.00 0.01" rgba="0.25 0.25 0.25 1.00" mass="0.05"/>
+			<joint name="x" type="slide" pos="0 0 -0.25" axis="1 0 0"/>
 
-			<body>
-				<geom type="capsule" size="0.01" fromto="0.00 0.00 0.01 0.00 0.00 0.41"/>
-				<joint type="hinge" pos="0.0 0.0 0.01" axis="0 1 0"/>
+			<body name="Pole">
+				<geom type="capsule" size="0.01" fromto="0.00 0.00 0.01 0.00 0.00 0.41" mass="0.25"/>
+				<joint name="theta" type="hinge" pos="0.0 0.0 0.01" axis="0 -1 0"/>
 			</body>
 			
 		</body>
@@ -23,7 +23,11 @@
 	</worldbody>
 
 	<actuator>
-		<general joint="slide" ctrlrange="-100 100"/>
+		<motor name="u" joint="x" ctrlrange="-5.0 +5.0"/>
 	</actuator>
 	
+	<contact>
+		<exclude body1="Cart" body2="Pole"/>
+	</contact>
+
 </mujoco>
